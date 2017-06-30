@@ -3,7 +3,7 @@ function item(index) {
 }
 
 function update_command() {
-    var command = "!vote";
+    var command = "?vote";
     
     $(".items li").each(function(index) {
         if (item(index).val()) {
