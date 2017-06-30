@@ -38,6 +38,7 @@ li:nth-child(odd) {
     font-size: 16px;
     width: 512px;
     height: 64px;
+    resize: vertical;
 }
 
 .info {
