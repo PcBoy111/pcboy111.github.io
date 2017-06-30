@@ -40,6 +40,11 @@ li:nth-child(odd) {
     height: 64px;
 }
 
+.info {
+    padding-top: 0;
+    font-size: 14px;
+}
+
 #copy {
     font-size: 18px;
     float: right;
