@@ -1,61 +1,14 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Voting 2017</title>
-<style>
-* {
-    padding: 0;
-    font-family: sans-serif;
-}
-
-body {
-    background-color: #f9f9f9;
-}
-
-
-.content {
-    max-width: 512px;
-    margin: auto;
-    font-size: 18px;
-}
-
-ol {
-    /*list-style-type: none;*/
-    list-style-position: inside;
-    text-align: right;
-}
-
-li {
-    padding-bottom: 4px;
-}
-
-li:nth-child(odd) {
-    background-color: #ddd;
-}
-
-.command-div {
-    padding-top: 40px;
-}
-
-.command {
-    background-color: #ddd;
-    font-family: monospace;
-    font-size: 16px;
-    width: 512px;
-    height: 64px;
-}
-
-#copy {
-    font-size: 18px;
-    float: right;
-}
-</style></head>
-
+<link rel="stylesheet" type="text/css" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="script.js"></script>
+<script src="script.js"></script></head>
 
 <body>
 <div class="content">
     <h1>Legg inn din stemme:</h1>
     <ol class="items">
+        <li><input type="text" id="li0" size=64></li>
         <li><input type="text" id="li1" size=64></li>
         <li><input type="text" id="li2" size=64></li>
         <li><input type="text" id="li3" size=64></li>
@@ -65,7 +18,6 @@ li:nth-child(odd) {
         <li><input type="text" id="li7" size=64></li>
         <li><input type="text" id="li8" size=64></li>
         <li><input type="text" id="li9" size=64></li>
-        <li><input type="text" id="li10" size=64></li>
     </ol>
     
     <br />
