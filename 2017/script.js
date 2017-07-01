@@ -60,7 +60,7 @@ function handle_swap(event) {
 }
 
 function copy_command() {
-    $(".command").select();
+    $(".command").focus().select();
     document.execCommand("copy");
     save_storage();
 }
@@ -74,6 +74,5 @@ $(document).ready(function() {
     $(".items").on("keyup", handle_swap);
     
     $("#copy").on("click", copy_command);
-    $(".command").on("click", copy_command);
 });
 
