@@ -104,7 +104,6 @@ function copy_command() {
 
 $(document).ready(function() {
     load_storage();
-    update_command();
     
     // https://stackoverflow.com/a/14573550
     valid_players = $("#players option").map(function() {
@@ -115,6 +114,7 @@ $(document).ready(function() {
         // Being a real moron and creating a fake event to do the job
         validate_input({"target": {"id": item(index)[0].id}});
     });
+    update_command();
     
     $(".items").on("input", function(event) {
         var e = $("#" + event.target.id)
