@@ -14,10 +14,9 @@ function update_command() {
     $(".command").val(command);
 }
 
-function save_storage() {
-    $(".items li").each(function(index) {
-        localStorage.setItem("li" + index, item(index).val());
-    });
+function save_storage(event) {
+    var index = parseInt(event.target.id.slice(2));
+    localStorage.setItem("li" + index, item(index).val());
 }
 
 function load_storage() {
