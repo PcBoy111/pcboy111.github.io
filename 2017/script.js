@@ -1,4 +1,6 @@
-var valid_players;
+var total_players = 15,
+    max_index = total_players - 1,
+    valid_players;
 
 function item(index) {
     return $("#li" + index);
@@ -27,6 +29,19 @@ function load_storage() {
     });
 }
 
+function is_duplicate(e) {
+    var start_index = parseInt(e[0].id.slice(2));
+    
+    // Only check duplicates above the current position
+    for (var index = 0; index < start_index; index++) {
+        if (e.val().toLowerCase() == item(index).val().toLowerCase()) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 function validate_input(event) {
     var e = $("#" + event.target.id);
     
@@ -36,12 +51,14 @@ function validate_input(event) {
         return;
     }
     
-    for (index in valid_players) {
-        if (e.val().toLowerCase() == valid_players[index].toLowerCase()) {
-            // Input must be valid
-            if (e.hasClass("invalid"))
-                e.removeClass("invalid");
-            return true;
+    if (!is_duplicate(e)) {
+        for (index in valid_players) {
+            if (e.val().toLowerCase() == valid_players[index].toLowerCase()) {
+                // Input must be valid
+                if (e.hasClass("invalid"))
+                    e.removeClass("invalid");
+                return true;
+            }
         }
     }
     
@@ -67,7 +84,7 @@ function handle_swap(event) {
         index = parseInt(event.target.id.slice(2)),
         next;
     
-    if ((down && index >= 14) || (up && index <= 0))
+    if ((down && index >= max_index) || (up && index <= 0))
         return;
     
     next = item(index + (down ? 1 : -1));
@@ -89,6 +106,11 @@ $(document).ready(function() {
     valid_players = $("#players option").map(function() {
         return this.value;
     }).get();
+    
+    $(".items li").each(function(index) {
+        // Being a real moron and creating a fake event to do the job
+        validate_input({"target": {"id": item(index)[0].id}});
+    });
     
     $(".items").on("input", update_command);
     $(".items").on("focusout", function(event) {
