@@ -23,6 +23,10 @@ li {
     padding-bottom: 4px;
 }
 
+.invalid {
+    background-color: #ffafaf !important;
+}
+
 li:nth-child(odd) {
     background-color: #ddd;
 }

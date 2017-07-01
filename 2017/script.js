@@ -1,3 +1,5 @@
+var valid_players;
+
 function item(index) {
     return $("#li" + index);
 }
@@ -23,6 +25,24 @@ function load_storage() {
     $(".items li").each(function(index) {
         item(index).val(localStorage.getItem("li" + index));
     });
+}
+
+function validate_input(event) {
+    var e = $("#" + event.target.id);
+    
+    if (!e.val())
+        return;
+    
+    for (index in valid_players) {
+        if (e.val().toLowerCase() == valid_players[index].toLowerCase()) {
+            // Input must be valid
+            e.removeClass("invalid");
+            return true;
+        }
+    }
+    
+    e.addClass("invalid");
+    return false;
 }
 
 function swap_values(e1, e2) {
@@ -60,8 +80,16 @@ $(document).ready(function() {
     load_storage();
     update_command();
     
+    // https://stackoverflow.com/a/14573550
+    valid_players = $("#players option").map(function() {
+        return this.value;
+    }).get();
+    
     $(".items").on("input", update_command);
-    $(".items").on("focusout", save_storage);
+    $(".items").on("focusout", function(event) {
+        save_storage(event);
+        validate_input(event);
+    });
     $(".items").on("keyup", handle_swap);
     
     $("#copy").on("click", copy_command);
