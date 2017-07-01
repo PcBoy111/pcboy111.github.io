@@ -91,6 +91,9 @@ function handle_swap(event) {
     swap_values(e, next);
     next.focus();
     update_command();
+    
+    // Also being a moron with hacky solutions
+    validate_input({"target": {"id": next[0].id}});
 }
 
 function copy_command() {
