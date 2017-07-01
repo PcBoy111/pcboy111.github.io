@@ -10,8 +10,9 @@ function update_command() {
     var command = "?vote";
     
     $(".items li").each(function(index) {
-        if (item(index).val()) {
-            command += " " + item(index).val() + ";";
+        var e = item(index)
+        if (e.val() && !e.hasClass("invalid")) {
+            command += " " + e.val() + ";";
         }
     });
     
@@ -115,12 +116,21 @@ $(document).ready(function() {
         validate_input({"target": {"id": item(index)[0].id}});
     });
     
-    $(".items").on("input", update_command);
-    $(".items").on("focusout", function(event) {
-        save_storage(event);
-        validate_input(event);
+    $(".items").on("input", function(event) {
+        var e = $("#" + event.target.id)
+        if (e.hasClass("invalid"))
+            e.removeClass("invalid");
+        update_command();
     });
-    $(".items").on("keyup", handle_swap);
+    $(".items").on("focusout", function(event) {
+        validate_input(event);
+        save_storage(event);
+        update_command();
+    });
+    $(".items").on("keyup", function(event) {
+        handle_swap(event);
+        update_command();
+    });
     
     $("#copy").on("click", copy_command);
     $(".command").on("click", copy_command);
