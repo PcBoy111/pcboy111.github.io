@@ -59,6 +59,12 @@ function handle_swap(event) {
     }
 }
 
+function copy_command() {
+    $(".command").select();
+    document.execCommand("copy");
+    save_storage();
+}
+
 $(document).ready(function() {
     load_storage();
     update_command();
@@ -67,10 +73,7 @@ $(document).ready(function() {
     $(".items").on("focusout", save_storage);
     $(".items").on("keyup", handle_swap);
     
-    $("#copy").on("click", function() {
-        $(".command").select();
-        document.execCommand("copy");
-        save_storage();
-    });
+    $("#copy").on("click", copy_command);
+    $(".command").on("click", copy_command);
 });
 
