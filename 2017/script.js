@@ -33,17 +33,17 @@ function swap_values(e1, e2) {
 
 function handle_swap(event) {
     var down = event.keyCode == 40,
-        up = event.keyCode == 38
+        up = event.keyCode == 38;
     
     if (!up && !down)
-        return
+        return;
     
     var e = $("#" + event.target.id),
         index = parseInt(event.target.id.slice(2)),
         next;
     
     if ((down && index >= 14) || (up && index <= 0))
-        return
+        return;
     
     next = item(index + (down ? 1 : -1));
     swap_values(e, next);
