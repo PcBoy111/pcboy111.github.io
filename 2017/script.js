@@ -54,7 +54,6 @@ function handle_swap(event) {
 function copy_command() {
     $(".command").focus().select();
     document.execCommand("copy");
-    save_storage();
 }
 
 $(document).ready(function() {
