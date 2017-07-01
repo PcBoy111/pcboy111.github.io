@@ -26,36 +26,29 @@ function load_storage() {
 }
 
 function swap_values(e1, e2) {
-    e2_value = e2.val();
+    var e2_value = e2.val();
     e2.val(e1.val());
     e1.val(e2_value);
 }
 
 function handle_swap(event) {
-    var e = $("#" + event.target.id),
-    index = parseInt(event.target.id.slice(2)),
-    next, next_value;
+    var down = event.keyCode == 40,
+        up = event.keyCode == 38
     
-    // Arrow down
-    if (event.keyCode == 40) {
-        if (index >= 14)
-            return
-        
-        next = item(index + 1);
-        swap_values(e, next);
-        next.focus();
-        update_command();
-    }
-    // Arrow up
-    else if (event.keyCode == 38) {
-        if (index <= 0)
-            return
-        
-        next = item(index - 1);
-        swap_values(e, next);
-        next.focus();
-        update_command();
-    }
+    if (!up && !down)
+        return
+    
+    var e = $("#" + event.target.id),
+        index = parseInt(event.target.id.slice(2)),
+        next;
+    
+    if ((down && index >= 14) || (up && index <= 0))
+        return
+    
+    next = item(index + (down ? 1 : -1));
+    swap_values(e, next);
+    next.focus();
+    update_command();
 }
 
 function copy_command() {
