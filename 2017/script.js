@@ -30,18 +30,23 @@ function load_storage() {
 function validate_input(event) {
     var e = $("#" + event.target.id);
     
-    if (!e.val())
+    if (!e.val()) {
+        if (e.hasClass("invalid"))
+            e.removeClass("invalid");
         return;
+    }
     
     for (index in valid_players) {
         if (e.val().toLowerCase() == valid_players[index].toLowerCase()) {
             // Input must be valid
-            e.removeClass("invalid");
+            if (e.hasClass("invalid"))
+                e.removeClass("invalid");
             return true;
         }
     }
     
-    e.addClass("invalid");
+    if (!e.hasClass("invalid"))
+        e.addClass("invalid");
     return false;
 }
 
