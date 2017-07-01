@@ -34,12 +34,12 @@ function swap_values(e1, e2) {
 
 function handle_swap(event) {
     var e = $("#" + event.target.id),
-    index = parseInt(event.target.id.slice(-1)),
+    index = parseInt(event.target.id.slice(2)),
     next, next_value;
     
     // Arrow down
     if (event.keyCode == 40) {
-        if (index >= 9)
+        if (index >= 14)
             return
         
         next = item(index + 1);
