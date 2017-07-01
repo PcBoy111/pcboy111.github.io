@@ -15,7 +15,6 @@ body {
 }
 
 ol {
-    /*list-style-type: none;*/
     list-style-position: inside;
     text-align: right;
 }
@@ -29,10 +28,11 @@ li:nth-child(odd) {
 }
 
 .command-div {
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .command {
+    padding: 4px;
     background-color: #ddd;
     font-family: monospace;
     font-size: 16px;
@@ -42,7 +42,6 @@ li:nth-child(odd) {
 }
 
 .info {
-    padding-top: 0;
     font-size: 14px;
 }
 
