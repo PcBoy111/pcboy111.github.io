@@ -74,5 +74,6 @@ $(document).ready(function() {
     $(".items").on("keyup", handle_swap);
     
     $("#copy").on("click", copy_command);
+    $(".command").on("click", copy_command);
 });
 

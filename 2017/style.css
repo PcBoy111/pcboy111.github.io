@@ -36,7 +36,7 @@ li:nth-child(odd) {
     background-color: #ddd;
     font-family: monospace;
     font-size: 16px;
-    width: 512px;
+    width: 502px;
     height: 64px;
     resize: vertical;
 }
