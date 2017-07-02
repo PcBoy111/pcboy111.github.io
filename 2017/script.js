@@ -43,7 +43,9 @@ function is_duplicate(e) {
     return false;
 }
 
-function validate_input(event) {
+function validate_input(event, quiet) {
+    var quiet = quiet || false;
+    
     var e = $("#" + event.target.id);
     
     if (!e.val()) {
@@ -63,7 +65,7 @@ function validate_input(event) {
         }
     }
     
-    if (!e.hasClass("invalid"))
+    if (!e.hasClass("invalid") && !quiet)
         e.addClass("invalid");
     return false;
 }
@@ -84,6 +86,10 @@ function handle_swap(event) {
     var e = $("#" + event.target.id),
         index = parseInt(event.target.id.slice(2)),
         next;
+    
+    // Ignore if the input is invalid
+    if (!validate_input(event, true))
+        return
     
     if ((down && index >= max_index) || (up && index <= 0))
         return;
@@ -120,6 +126,7 @@ $(document).ready(function() {
         var e = $("#" + event.target.id)
         if (e.hasClass("invalid"))
             e.removeClass("invalid");
+        
         update_command();
     });
     $(".items").on("focusout", function(event) {
