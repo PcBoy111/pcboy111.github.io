@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                font-family: 'Roboto', sans-serif;
+                user-select: none;
+            }
+
+            .counter-container {
+                background-color: #131212;
+                color: white;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 10rem;
+                cursor: pointer;
+
+            }
+
+            .counter-container.editing {
+                cursor: text;
+            }
+
+            .buttons-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+            }
+
+            .reset-container {
+                background-color: #c02929;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 3rem;
+                flex-basis: 80%;
+                cursor: pointer;
+
+            }
+
+            .toggle-edit-container {
+                background-color: #f5f4e7;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1;
+                font-size: 2rem;
+                height: 100%;
+                cursor: pointer;
+            }
+
+            .toggle-edit-container.editing {
+                background-color: #e2d631;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div class="content">
+            <div class="counter-container">
+                <span class="counter">0</span>
+            </div>
+            <div class="buttons-container">
+                <div class="reset-container">
+                    <span id="reset">Reset</span>
+                </div>
+                <div class="toggle-edit-container">
+                    <span id="toggle-edit">Edit</span>
+                </div>
+            </div>
+        </div>
+        <script>
+            let editing = false;
+
+            // Increment the number when the counter-container is clicked
+            document.querySelector('.counter-container').addEventListener('click', function() {
+                // Skip if editing
+                if (editing) {
+                    return;
+                }
+                
+                let number = document.querySelector('.counter');
+                number.innerHTML = parseInt(number.innerHTML) + 1;
+            });
+
+            // Reset the number when the reset-container is clicked
+            document.querySelector('.reset-container').addEventListener('click', function() {
+                let number = document.querySelector('.counter');
+                number.innerHTML = 0;
+            });
+
+            // Toggle editing when the toggle-edit-container is clicked
+            document.querySelector('.toggle-edit-container').addEventListener('click', function() {
+                editing = !editing;
+                document.querySelector('.toggle-edit-container').classList.toggle('editing');
+                document.querySelector('.counter-container').classList.toggle('editing');
+
+                // Make the number editable
+                let number = document.querySelector('.counter');
+                number.contentEditable = editing;
+            });
+        </script>
+    </body>
+</html>
