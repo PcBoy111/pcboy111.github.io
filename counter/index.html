@@ -102,17 +102,20 @@
             }
 
             // Increment the number when the counter-container is clicked
-            document.querySelector('.counter-container').addEventListener('mouseup', increment);
-            document.querySelector('.counter-container').addEventListener('touchend', increment);
+            document.querySelector('.counter-container').addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                increment();
+            });
+            document.querySelector('.counter-container').addEventListener('mousedown', increment);
 
             // Reset the number when the reset-container is clicked
-            document.querySelector('.reset-container').addEventListener('click', function() {
+            document.querySelector('.reset-container').addEventListener('click', () => {
                 let number = document.querySelector('.counter');
                 number.innerHTML = 0;
             });
 
             // Toggle editing when the toggle-edit-container is clicked
-            document.querySelector('.toggle-edit-container').addEventListener('click', function() {
+            document.querySelector('.toggle-edit-container').addEventListener('click', () => {
                 editing = !editing;
                 document.querySelector('.toggle-edit-container').classList.toggle('editing');
                 document.querySelector('.counter-container').classList.toggle('editing');
