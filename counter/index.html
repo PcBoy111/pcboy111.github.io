@@ -90,9 +90,8 @@
         </div>
         <script>
             let editing = false;
-
-            // Increment the number when the counter-container is clicked
-            document.querySelector('.counter-container').addEventListener('click', function() {
+            
+            const increment = () => {
                 // Skip if editing
                 if (editing) {
                     return;
@@ -100,7 +99,11 @@
                 
                 let number = document.querySelector('.counter');
                 number.innerHTML = parseInt(number.innerHTML) + 1;
-            });
+            }
+
+            // Increment the number when the counter-container is clicked
+            document.querySelector('.counter-container').addEventListener('mouseup', increment);
+            document.querySelector('.counter-container').addEventListener('touchend', increment);
 
             // Reset the number when the reset-container is clicked
             document.querySelector('.reset-container').addEventListener('click', function() {
